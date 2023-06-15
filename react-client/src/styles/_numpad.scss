@@ -1,0 +1,40 @@
+@import './variables';
+
+.keyboard{
+    width: 100%;
+    margin-top: 100%;
+    .keyboard-row{
+
+        .one-block{
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            border:none;
+            color: #0050aa;
+            font-size: 15px;
+            margin: 1% 1%;
+            background-color: #e1ebfa;
+        }
+        .suppBtn{
+            background-color: red;
+            padding: 4px;
+            img{
+                height: 29px;
+                width: 29px;
+            }
+        }
+        .validateBtn{
+            background-color: green;
+            img{
+                height: 27px;
+                width: 27px;
+            }
+        }
+        .one-block[value="point"]{
+            font-weight: bolder;
+        }
+        .one-block[value="nothing"]{
+            color: #e1ebfa;
+        }
+    }
+}

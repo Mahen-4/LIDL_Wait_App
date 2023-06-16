@@ -3,11 +3,13 @@ from flask_pymongo import pymongo
 from pymongo import MongoClient
 from bson.json_util import dumps
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-uri = "mongodb+srv://user1:fBTJAgfCMfN4Om68@cluster0.lnmsrd4.mongodb.net/?retryWrites=true&w=majority"
+uri = os.environ.get("MONGODB_URI")
+# uri = "mongodb+srv://user1:fBTJAgfCMfN4Om68@cluster0.lnmsrd4.mongodb.net/?retryWrites=true&w=majority"
 # Create a new client and connect to the server
 client = MongoClient(uri)
 db = client['product']

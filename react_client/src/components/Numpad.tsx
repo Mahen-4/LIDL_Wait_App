@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState, useContext} from 'react'
 import clear from '../images/clear.png'
 import validate from '../images/validate.png'
-import { AppContext } from '../App';
+import AppContext from '../context/Context';
 import { Link } from 'react-router-dom';
 
 
@@ -11,15 +11,15 @@ export const Numpad =  () => {
 
     
 
-    const {setGuessNum} = useContext(AppContext)
-    const [inputNum, setInputNum] = useState(0);
-    const [precNum, setPrecNum] = useState([]);
-    const [isDecimal, setIsDecimal] = useState(false);
-    const [decimalCount, setDecimalCount] = useState(1);
-    const [monitor, setMonitor] = useState(0)
-    const [decimalDisable, setDecimalDisable] = useState(false)
-    const [suppDisable, setSuppDisable] = useState(false)
-    const [numDisable, setNumDisable] = useState(false)
+    const {setGuessNum}:any = useContext(AppContext)
+    const [inputNum, setInputNum] = useState<number>(0);
+    const [precNum, setPrecNum] = useState<number[]>([]);
+    const [isDecimal, setIsDecimal] = useState<boolean>(false);
+    const [decimalCount, setDecimalCount] = useState<number>(1);
+    const [monitor, setMonitor] = useState<number>(0)
+    const [decimalDisable, setDecimalDisable] = useState<boolean>(false)
+    const [suppDisable, setSuppDisable] = useState<boolean>(false)
+    const [numDisable, setNumDisable] = useState<boolean>(false)
     
     // HANDLING DISABLED BUTTON AND DECIMAL
     React.useEffect(()=>{
@@ -27,7 +27,7 @@ export const Numpad =  () => {
         precNum.length < 1 && setIsDecimal(false)
         decimalCount >= 1 && setIsDecimal(false)
         isDecimal ? setDecimalDisable(true) :  setDecimalDisable(false)
-        isDecimal & precNum.length >= 2 ? setNumDisable(true) : setNumDisable(false)
+        isDecimal && precNum.length >= 2 ? setNumDisable(true) : setNumDisable(false)
   
     },[precNum.length])
 
@@ -37,7 +37,7 @@ export const Numpad =  () => {
     
 
     // HANDLING NUM INPUT 12.3
-    const takeInputNum = (num) =>{
+    const takeInputNum = (num: number) =>{
         setPrecNum(previous => [...previous, num]);
         if(isDecimal){
             num = num/Math.pow(10,decimalCount)
@@ -53,11 +53,11 @@ export const Numpad =  () => {
     // HANDLE  SUPP
     const deleteNum = () => {
         
-        let lastNumber = precNum[precNum.length -1]
+        let lastNumber:number = precNum[precNum.length -1]
 
         if(decimalCount < 2)
         {
-            let tempNum  = inputNum / 10
+            let tempNum:number = inputNum / 10
             setInputNum(parseFloat((tempNum - (lastNumber/10)).toFixed(decimalCount)))
             setPrecNum(previousN => previousN.filter(num => num !== lastNumber))
         }

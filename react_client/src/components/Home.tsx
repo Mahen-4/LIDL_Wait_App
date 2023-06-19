@@ -1,12 +1,13 @@
 
 import * as React from 'react';
 import {useContext, useState} from 'react'
-import { AppContext } from '../App';
+import AppContext from '../context/Context';
 import { Link } from 'react-router-dom';
 
 export const Home =  () => {
 
-    const {guessNum} = useContext(AppContext)
+    const {guessNum}:any = useContext(AppContext)
+
     console.log(guessNum)
     return(
         <div>

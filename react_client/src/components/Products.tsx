@@ -1,18 +1,25 @@
 import * as React from 'react';
-import { AppContext } from '../App';
+import AppContext from '../context/Context';
 import { useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 
 export const Products =  () => {
 
-    const {guessNum} = useContext(AppContext)
-    const [allProducts, setAllProducts] = useState([])
-    let generate = 0
-    const [doneProducts, setDoneProducts] = useState([])
+    interface product {
+        img: string,
+        name: string,
+        price: number
+    }
 
-    const [currentProduct_name, setCurrentProduct_name] = useState("")
-    const [currentProduct_price, setCurrentProduct_price] = useState(0)
-    const [currentProduct_image, setCurrentProduct_image] = useState("")
+
+    const {guessNum}:any = useContext(AppContext)
+    const [allProducts, setAllProducts] = useState<product[]>([])
+    let generate:number = 0
+    const [doneProducts, setDoneProducts] = useState<number[]>([])
+
+    const [currentProduct_name, setCurrentProduct_name] = useState<string>("")
+    const [currentProduct_price, setCurrentProduct_price] = useState<number>(0)
+    const [currentProduct_image, setCurrentProduct_image] = useState<string>("")
 
     //get all product from backend
     useEffect(()=>{
@@ -22,8 +29,8 @@ export const Products =  () => {
     const getData = async () =>{
         let response = await axios.get("http://127.0.0.1:5000/game_fruit&Legume")
         let data = await response.data.product
-        setAllProducts(data)
         console.log(allProducts)
+        setAllProducts(data)
         game()
     }
 

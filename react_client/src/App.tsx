@@ -5,8 +5,8 @@ import { Home } from './components/Home';
 import {useState, createContext} from 'react'
 import './styles/app.scss'
 import { Game } from './components/Game';
+import AppContext from './context/Context';
 
-export const AppContext = createContext();
 
 function App() {
 

@@ -1,40 +1,62 @@
 @import './variables';
 
-.keyboard{
+.numpad{
     width: 100%;
     margin-top: 100%;
-    .keyboard-row{
-
-        .one-block{
-            height: 60px;
-            width: 60px;
-            border-radius: 50%;
-            border:none;
-            color: #0050aa;
-            font-size: 15px;
-            margin: 1% 1%;
-            background-color: #e1ebfa;
-        }
-        .suppBtn{
-            background-color: red;
-            padding: 4px;
-            img{
-                height: 29px;
-                width: 29px;
-            }
-        }
-        .validateBtn{
-            background-color: green;
-            img{
-                height: 27px;
-                width: 27px;
-            }
-        }
-        .one-block[value="point"]{
-            font-weight: bolder;
-        }
-        .one-block[value="nothing"]{
-            color: #e1ebfa;
+    margin-left: 13%;
+    .monitor{
+        width:65%;
+        background-color: $divBackgroundColor; 
+        border-radius: 20px;
+        padding-left: 23px;
+        .output{
+            font-size: 30px;
+            color: $textColor;
         }
     }
+    .keyboard{
+        .keyboard-row{
+            .one-block{
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                border:none;
+                color: $textColor;
+                font-size: 15px;
+                margin: 1% 1%;
+                background-color: $divBackgroundColor;
+                &:disabled{
+                    background-color: grey;
+                    color: white;
+                }
+            }
+            .suppBtn{
+                background-color: red;
+                padding: 4px;
+                img{
+                    height: 29px;
+                    width: 29px;
+                }
+            }
+            .validateBtn{
+                background-color: green;
+                img{
+                    height: 27px;
+                    width: 27px;
+                }
+            }
+            .pointBtn{
+                background-color: rgb(255, 214, 32);
+            }
+            .one-block[value="point"]{
+                font-weight: bolder;
+            }
+            .one-block[value="nothing"]{
+                color: $divBackgroundColor !important;
+            }
+        }
+    }
+    
+    
 }
+

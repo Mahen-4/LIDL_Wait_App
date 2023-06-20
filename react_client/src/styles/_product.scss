@@ -1,0 +1,38 @@
+@import './variables';
+
+.product{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $textColor;
+        letter-spacing: 3px;
+    }
+    img{
+        height: 300px;
+        width: 85%;
+        border-radius: 50%;
+        border: 2px solid $textColor;
+    }
+    .plus_moins{
+        margin-top: 5%;
+        height:30px;
+        width: 50%;
+        position: relative;
+        background-color: $divBackgroundColor;
+        color: red;
+        font-weight: bold;
+        border-radius: 20px;
+    }
+    .plus {
+        &:after{
+            @include after_plus_moins("PLUS +");
+        }
+    }
+    .moins{
+        &:after{
+            @include after_plus_moins("MOIN -");
+        }
+    }
+}

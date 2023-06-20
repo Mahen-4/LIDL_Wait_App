@@ -1,1 +1,6 @@
-@import './numpad'
+@import './numpad';
+@import './product';
+
+*{
+    font-family: $font;
+}

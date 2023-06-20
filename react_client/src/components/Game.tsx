@@ -8,7 +8,7 @@ export const Game =  () => {
 
 
     return(
-        <div>
+        <div className='game'>
             <Products />
             <Numpad />
         </div>

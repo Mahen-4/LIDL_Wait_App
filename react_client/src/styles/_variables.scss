@@ -1,2 +1,22 @@
 $divBackgroundColor : #e1ebfa;
 $textColor:  #0050aa;
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+$font:'Varela Round', sans-serif;
+$greenColor : #e1fae3;
+$redColor: #fae1e1;
+$orangeColor : #faf3e1;
+
+
+@mixin after_plus_moins($content){
+    content: $content;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    animation: leftRight 3s infinite;
+}
+@keyframes leftRight{
+    0%{left:0%};
+    50%{left: 65%;}
+    100%{left: 0%;}
+}

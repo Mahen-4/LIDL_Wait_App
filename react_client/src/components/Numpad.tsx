@@ -11,7 +11,7 @@ export const Numpad =  () => {
 
     
 
-    const {setGuessNum}:any = useContext(AppContext)
+    const {setGuessNum, points, guessNum}:any = useContext(AppContext)
     const [inputNum, setInputNum] = useState<number>(0);
     const [precNum, setPrecNum] = useState<number[]>([]);
     const [isDecimal, setIsDecimal] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export const Numpad =  () => {
     },[precNum.length])
 
     React.useEffect(()=>{
-        setMonitor(inputNum);   
+        setMonitor(inputNum); 
     },[inputNum])
     
 
@@ -72,7 +72,6 @@ export const Numpad =  () => {
 
   return (
     <div className='numpad'>
-        <Link to="/">HOME</Link>
         <section className='monitor'>
             <p className='output'>{monitor}</p>
         </section>
@@ -81,7 +80,7 @@ export const Numpad =  () => {
                 <button className='one-block' disabled={numDisable} onClick={() => {takeInputNum(1)}}>1</button>
                 <button className='one-block' disabled={numDisable} onClick={() => {takeInputNum(2)}}>2</button>
                 <button className='one-block' disabled={numDisable} onClick={() => {takeInputNum(3)}}>3</button>
-                <button className='one-block pointBtn'>0</button>
+                <button className='one-block pointBtn'>{points}</button>
             </div>
             <div className='keyboard-row'>
                 <button className='one-block' disabled={numDisable} onClick={() => {takeInputNum(4)}}>4</button>

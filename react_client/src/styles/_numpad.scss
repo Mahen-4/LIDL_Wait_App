@@ -2,7 +2,7 @@
 
 .numpad{
     width: 100%;
-    margin-top: 100%;
+    margin-top: 5%;
     margin-left: 13%;
     .monitor{
         width:65%;
@@ -28,6 +28,10 @@
                 &:disabled{
                     background-color: grey;
                     color: white;
+                }
+                &:active{
+                    background-color: $textColor;
+                    color: $divBackgroundColor;
                 }
             }
             .suppBtn{

@@ -1,69 +1,93 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
 import { useState, useContext, useEffect} from 'react'
-import axios from 'axios'
 
 export const Products =  () => {
 
-    interface product {
-        img: string,
-        name: string,
-        price: number
-    }
 
-
-    const {guessNum}:any = useContext(AppContext)
-    const [allProducts, setAllProducts] = useState<product[]>([])
+    const {guessNum, setGuessNum, allProduct, setPoints, points}:any = useContext(AppContext)
     let generate:number = 0
+    const [timer, setTimer] = useState<number>(31)
     const [doneProducts, setDoneProducts] = useState<number[]>([])
 
     const [currentProduct_name, setCurrentProduct_name] = useState<string>("")
     const [currentProduct_price, setCurrentProduct_price] = useState<number>(0)
     const [currentProduct_image, setCurrentProduct_image] = useState<string>("")
 
-    //get all product from backend
+    // START
     useEffect(()=>{
-        getData()
+        setPoints(0)
+        console.log(allProduct)
+        game()
     },[])
 
-    const getData = async () =>{
-        let response = await axios.get("http://127.0.0.1:5000/game_fruit&Legume")
-        let data = await response.data.product
-        console.log(allProducts)
-        setAllProducts(data)
-        game()
-    }
-
+    // when user click validate 
     useEffect(()=>{
-        if(guessNum != 0){
+        if(guessNum !== 0){
             handleGuessNum()
         } 
     },[guessNum])
 
     const handleGuessNum = ()=>{
-        if(currentProduct_price == guessNum){
-            console.log('WELL DONE !')
+    
+        document.getElementsByClassName("plus_moins")[0].classList.remove("plus")
+        document.getElementsByClassName("plus_moins")[0].classList.remove("moins")
+        switch (true) {
+
+            case guessNum === currentProduct_price:
+                setPoints(points+1)
+                setGuessNum(0)
+                game()
+                break;
+
+            case guessNum > currentProduct_price:
+                document.getElementsByClassName("plus_moins")[0].classList.add("moins")
+                break;
+            
+            case guessNum < currentProduct_price:
+                document.getElementsByClassName("plus_moins")[0].classList.add("plus")
+                break;
+
+            default:
+                break;
         }
     }
 
+     // generate random product -> verif if already guessed -> if not display  product
     const game = ()=>{
-        if(allProducts.length != 0){
-            generate = Math.floor(Math.random() * 6);
-            console.log(generate)
-            console.log(allProducts[generate])
-            setDoneProducts(prev => [...prev, generate])
-            setCurrentProduct_price(allProducts[generate].price)
-            setCurrentProduct_name(allProducts[generate].name)
-            setCurrentProduct_image(allProducts[generate].img)
+        generate = Math.floor(Math.random() * 6);
+        if(doneProducts.includes(generate)){
+            if(doneProducts.length === allProduct.length){
+                console.log("FINISH")
+            }
+            else{
+                game()
+            }
         }
-        
-
+        else{
+            setDoneProducts(prev => [...prev, generate])
+            setCurrentProduct_price(allProduct[generate].price)
+            setCurrentProduct_name(allProduct[generate].name)
+            setCurrentProduct_image(allProduct[generate].img)
+        }
     }
 
+
+    // TIMER 
+    const timerDown = () => {
+        setTimer(timer-1)
+
+       
+    }
+    setInterval(timerDown,1000)
     return(
-        <div>
-            <h1>{currentProduct_name}</h1>
-            <img src={`https://res.cloudinary.com/dcta12mne/image/upload/v1686749427/produits/${currentProduct_image}.jpg`} height={50} />
+        <div className='product'>
+            <div>
+                <h1>{currentProduct_name}</h1>
+                <div className='timer'>{timer}</div>
+            </div>
+            <img src={`https://res.cloudinary.com/dcta12mne/image/upload/v1686749427/produits/${currentProduct_image}.jpg`} alt='' />
+            <div className='plus_moins'></div>
         </div>
     )
 }

@@ -32,6 +32,7 @@ export const Numpad =  () => {
     },[precNum.length])
 
     React.useEffect(()=>{
+        console.log(inputNum)
         setMonitor(inputNum); 
     },[inputNum])
     

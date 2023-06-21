@@ -1,12 +1,12 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
 import { useState, useContext, useEffect} from 'react'
+import { handleGuessNum } from './game_fn/HandleGuessNum';
+import { generateProduct } from './game_fn/generateProduct';
 
 export const Products =  () => {
 
-
     const {guessNum, setGuessNum, allProduct, setPoints, points}:any = useContext(AppContext)
-    let generate:number = 0
     const [timer, setTimer] = useState<number>(31)
     const [doneProducts, setDoneProducts] = useState<number[]>([])
 
@@ -18,59 +18,15 @@ export const Products =  () => {
     useEffect(()=>{
         setPoints(0)
         console.log(allProduct)
-        game()
+        generateProduct(doneProducts,allProduct,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
     },[])
 
     // when user click validate 
     useEffect(()=>{
         if(guessNum !== 0){
-            handleGuessNum()
+            handleGuessNum(guessNum,currentProduct_price,points,setPoints,setGuessNum, ()=> generateProduct(doneProducts,allProduct,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image))
         } 
     },[guessNum])
-
-    const handleGuessNum = ()=>{
-    
-        document.getElementsByClassName("plus_moins")[0].classList.remove("plus")
-        document.getElementsByClassName("plus_moins")[0].classList.remove("moins")
-        switch (true) {
-
-            case guessNum === currentProduct_price:
-                setPoints(points+1)
-                setGuessNum(0)
-                game()
-                break;
-
-            case guessNum > currentProduct_price:
-                document.getElementsByClassName("plus_moins")[0].classList.add("moins")
-                break;
-            
-            case guessNum < currentProduct_price:
-                document.getElementsByClassName("plus_moins")[0].classList.add("plus")
-                break;
-
-            default:
-                break;
-        }
-    }
-
-     // generate random product -> verif if already guessed -> if not display  product
-    const game = ()=>{
-        generate = Math.floor(Math.random() * 6);
-        if(doneProducts.includes(generate)){
-            if(doneProducts.length === allProduct.length){
-                console.log("FINISH")
-            }
-            else{
-                game()
-            }
-        }
-        else{
-            setDoneProducts(prev => [...prev, generate])
-            setCurrentProduct_price(allProduct[generate].price)
-            setCurrentProduct_name(allProduct[generate].name)
-            setCurrentProduct_image(allProduct[generate].img)
-        }
-    }
 
 
     // TIMER 
@@ -80,6 +36,8 @@ export const Products =  () => {
        
     }
     setInterval(timerDown,1000)
+
+    
     return(
         <div className='product'>
             <div>

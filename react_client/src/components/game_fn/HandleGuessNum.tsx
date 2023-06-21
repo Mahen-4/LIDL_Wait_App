@@ -3,6 +3,7 @@ export const handleGuessNum = (
     guessNum:number,
     currentProduct_price:number,
     points: number,
+    setTimerDown: React.Dispatch<React.SetStateAction<number>>,
     setPoints: React.Dispatch<React.SetStateAction<number>>,
     setGuessNum: React.Dispatch<React.SetStateAction<number>>,
     generateProduct: () => void
@@ -17,6 +18,7 @@ export const handleGuessNum = (
             setPoints(points+1)
             setGuessNum(0)
             generateProduct()
+            setTimerDown(30)
             break;
 
         case guessNum > currentProduct_price:

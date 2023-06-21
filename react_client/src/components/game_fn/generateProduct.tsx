@@ -8,6 +8,7 @@ interface Product {
 export const generateProduct = (
     doneProducts: number[],
     allProduct: Product[],
+    setFinish: React.Dispatch<React.SetStateAction<boolean>>,
     setDoneProducts: React.Dispatch<React.SetStateAction<number[]>>,
     setCurrentProduct_price: React.Dispatch<React.SetStateAction<number>>,
     setCurrentProduct_name: React.Dispatch<React.SetStateAction<string>>,
@@ -18,9 +19,10 @@ export const generateProduct = (
     if(doneProducts.includes(generate)){
         if(doneProducts.length === allProduct.length){
             console.log("FINISH")
+            setFinish(true)
         }
         else{
-            generateProduct(doneProducts,allProduct,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
+            generateProduct(doneProducts,allProduct,setFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
         }
     }
     else{

@@ -27,12 +27,12 @@ export const Numpad =  () => {
         precNum.length < 1 && setIsDecimal(false)
         decimalCount >= 1 && setIsDecimal(false)
         isDecimal ? setDecimalDisable(true) :  setDecimalDisable(false)
-        isDecimal && precNum.length >= 2 ? setNumDisable(true) : setNumDisable(false)
+        
+        isDecimal ? setNumDisable(true) : setNumDisable(false)
   
     },[precNum.length])
 
     React.useEffect(()=>{
-        console.log(inputNum)
         setMonitor(inputNum); 
     },[inputNum])
     
@@ -54,18 +54,23 @@ export const Numpad =  () => {
     // HANDLE  SUPP
     const deleteNum = () => {
         
-        let lastNumber:number = precNum[precNum.length -1]
-
+        let lastNumber:number = precNum[precNum.length -1 ]
+        console.log(precNum.length)
+        // No decimal number
         if(decimalCount < 2)
         {
             let tempNum:number = inputNum / 10
-            setInputNum(parseFloat((tempNum - (lastNumber/10)).toFixed(decimalCount)))
+            setInputNum(parseFloat((tempNum - (lastNumber/10)).toFixed(decimalCount-1)))
             setPrecNum(previousN => previousN.filter(num => num !== lastNumber))
         }
+        // decimal number
         else{
+            if(lastNumber < 1){
+                lastNumber = lastNumber*10
+            }
             setDecimalCount(decimalCount - 1)
-            setInputNum(parseFloat((inputNum - lastNumber).toFixed(decimalCount)))
-            setPrecNum(previousN => previousN.filter(num => num !== lastNumber))
+            setInputNum(parseFloat((inputNum - (lastNumber/10)).toFixed(decimalCount)))
+            setPrecNum(previousN => previousN.slice(0.-1))
         }
         if(precNum.length <= 1){setSuppDisable(true)}
 

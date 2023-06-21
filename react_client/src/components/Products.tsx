@@ -38,19 +38,19 @@ export const Products =  () => {
         timer(timerDown,finish,setTimerDown,generatingProduct)
     }
 
-    useEffect(()=>{  
-        const interval = setInterval(() => {
-            time()
-        }, 1000);
-        //Clearing the interval
-        return () => clearInterval(interval);
-    },[timerDown])
+    // useEffect(()=>{  
+    //     const interval = setInterval(() => {
+    //         time()
+    //     }, 1000);
+    //     //Clearing the interval
+    //     return () => clearInterval(interval);
+    // },[timerDown])
     
     return(
         <div className='product'>
-            <div>
+            <div className='title_second'>
                 <h1>{currentProduct_name}</h1>
-                <div className='timer'>{timerDown}</div>
+                <div className='timer' color="green">---{timerDown}s</div>
             </div>
             <img src={`https://res.cloudinary.com/dcta12mne/image/upload/v1686749427/produits/${currentProduct_image}.jpg`} alt='' />
             <div className='plus_moins'></div>

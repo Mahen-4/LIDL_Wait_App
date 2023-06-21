@@ -37,7 +37,7 @@ export const Numpad =  () => {
     },[inputNum])
     
 
-    // HANDLING NUM INPUT 12.3
+    // HANDLING NUM INPUT
     const takeInputNum = (num: number) =>{
         setPrecNum(previous => [...previous, num]);
         if(isDecimal){

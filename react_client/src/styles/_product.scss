@@ -10,8 +10,8 @@
         letter-spacing: 3px;
     }
     img{
-        height: 300px;
-        width: 85%;
+        height: 280px;
+        width: 80%;
         border-radius: 50%;
         border: 2px solid $textColor;
     }
@@ -35,4 +35,24 @@
             @include after_plus_moins("MOIN -");
         }
     }
+    .title_second{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .timer{
+            font-size: 35px;
+            transition: .3s ease-in-out;
+            &[color="orange"]{
+                color: orange;
+            }
+            &[color="red"]{
+                color: red;
+            }
+            &[color="green"]{
+                color: green;
+            }
+        }
+    }
+   
+    
 }

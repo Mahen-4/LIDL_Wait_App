@@ -1,5 +1,6 @@
 $divBackgroundColor : #e1ebfa;
 $textColor:  #0050aa;
+$secondColor: #FAC77C;
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 $font:'Varela Round', sans-serif;
@@ -19,4 +20,27 @@ $orangeColor : #faf3e1;
     0%{left:0%};
     50%{left: 65%;}
     100%{left: 0%;}
+}
+
+@mixin burgerLine($top){
+    content: "";
+    position: absolute;
+    top: $top;
+    height: 5px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: $secondColor;
+}
+
+@mixin menu{
+    height: 32px;
+    width: 300px;
+    background-color: #e1ebfa;
+    margin-top: 15%;
+    font-size: 25px;
+    text-align: center;
+    color: #0050aa;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
 }

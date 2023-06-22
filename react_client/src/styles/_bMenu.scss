@@ -1,21 +1,53 @@
 @import './variables';
 
+.bMenu{
+    z-index: 2;
+    height: 5px;
+    width: 12%;
+    border-radius: 10px;
+    background-color: $secondColor;
+    position: relative;
+    &::after{
+        @include burgerLine(10px)
+    }
+    &::before{
+        @include burgerLine(20px)
+    }
+}
+
 .burger{
-    height: 62px;
+    height: 0px;
     position: absolute;
     left: -14px;
     top: -21px;
-    width: 17%;
-    border-radius: 50%;
+    width: 0%;
     background-color: $divBackgroundColor;
-    border: 3px solid #0050aa;
+    border: 2px solid $secondColor;
     transition: .5s ease-in-out;
-
+    
+    .menu{
+        margin-top: 50%;
+        transition: 0.3s;
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            li{
+                font-size: 20px;
+                color: $textColor;
+                display: flex;
+                align-items: center;
+                img{
+                    padding-right: 10px;
+                    height: 30px;
+                }
+            }
+        }
+    }
     
 }
 .bActive{
-    height: 100px;
-    width:90%;
-    left: 5%;
-    border-radius: 30%;
+    width: 47%;
+    border-radius: 10%;
 }

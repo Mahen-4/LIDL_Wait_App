@@ -1,20 +1,20 @@
 
 import * as React from 'react';
-import {useContext, useState} from 'react'
-import AppContext from '../context/Context';
 import { Link } from 'react-router-dom';
-import { Bmenu } from './Bmenu';
-
+import logo from '../images/logo.png'
 export const Home =  () => {
 
-    const {guessNum}:any = useContext(AppContext)
 
-    console.log(guessNum)
     return(
-        <div>
-            <Bmenu />
-            <Link to="/game">Numpad</Link>
-            <h1>{guessNum}</h1>
+        <div className='homePage'>
+            <img src={logo} alt='' />
+            <div className='homeMenu'>
+                <Link to="/series"><div className='subMenu'>Jouer</div></Link>
+                <Link to="/game"><div className='subMenu'>Règle du jeu</div></Link>
+                <Link to="/game"><div className='subMenu'>Mon compte</div></Link>
+            </div>
+            
+            
         </div>
     )
 }

@@ -1,7 +1,11 @@
 @import './numpad';
 @import './product';
 @import './bMenu';
-
+@import './home';
+@import './seriesMenu';
 *{
     font-family: $font;
+}
+a{
+    text-decoration: none;
 }

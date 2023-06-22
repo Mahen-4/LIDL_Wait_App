@@ -1,0 +1,22 @@
+@import './variables';
+
+.seriesPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;
+    img{
+        width: 90%;
+    }
+    .seriesMenu{
+        margin-top: 20%;
+        .subSeriesMenu{
+           @include menu;
+            &:active{
+                color: $secondColor;
+            }
+        
+        }
+    }
+}

@@ -26,16 +26,17 @@ $orangeColor : #faf3e1;
     content: "";
     position: absolute;
     top: $top;
+    left: 0px;
     height: 5px;
     width: 100%;
     border-radius: 10px;
     background-color: $secondColor;
 }
 
-@mixin menu{
+@mixin menu($bgC){
     height: 32px;
     width: 300px;
-    background-color: #e1ebfa;
+    background-color: $bgC;
     margin-top: 15%;
     font-size: 25px;
     text-align: center;
@@ -43,4 +44,12 @@ $orangeColor : #faf3e1;
     padding: 10px;
     border-radius: 10px;
     position: relative;
+}
+
+@mixin centered{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

@@ -11,7 +11,7 @@ export const Home =  () => {
             <div className='homeMenu'>
                 <Link to="/series"><div className='subMenu'>Jouer</div></Link>
                 <Link to="/game"><div className='subMenu'>Règle du jeu</div></Link>
-                <Link to="/game"><div className='subMenu'>Mon compte</div></Link>
+                <Link to="/login"><div className='subMenu'>Mon compte</div></Link>
             </div>
             
             

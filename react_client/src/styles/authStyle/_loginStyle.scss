@@ -1,0 +1,27 @@
+@import '../variables';
+
+.loginPage{
+    @include centered;
+    img{
+        width: 50%;
+    }
+    form{
+        input{
+            @include menu($divBackgroundColor);
+            border: none;
+            position: relative;
+            &:focus{
+                outline: none;
+            }
+        }
+        button{
+            background-color: $secondColor;
+            color: $textColor;
+            margin-top: 10%;
+            font-size: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+        }
+    }
+}

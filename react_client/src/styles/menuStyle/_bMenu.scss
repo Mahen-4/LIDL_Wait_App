@@ -1,4 +1,4 @@
-@import './variables';
+@import '../variables';
 
 .bMenu{
     z-index: 2;
@@ -6,7 +6,8 @@
     width: 12%;
     border-radius: 10px;
     background-color: $secondColor;
-    position: relative;
+    position: absolute;
+    left: 10px;
     &::after{
         @include burgerLine(10px)
     }
@@ -41,6 +42,7 @@
                 img{
                     padding-right: 10px;
                     height: 30px;
+                    width: 30px;
                 }
             }
         }
@@ -49,5 +51,6 @@
 }
 .bActive{
     width: 47%;
+    z-index: 1;
     border-radius: 10%;
 }

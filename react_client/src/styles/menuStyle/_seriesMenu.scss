@@ -1,18 +1,18 @@
-@import './variables';
+@import '../variables';
 
 .seriesPage{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30%;
+    @include centered;
     img{
-        width: 90%;
+        width: 50%;
     }
     .seriesMenu{
         margin-top: 20%;
+        h1{
+            color: $textColor;
+        }
         .subSeriesMenu{
-           @include menu;
+            margin-top: 20%;
+            @include menu($secondColor);
             &:active{
                 color: $secondColor;
             }

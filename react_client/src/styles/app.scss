@@ -1,8 +1,11 @@
-@import './numpad';
-@import './product';
-@import './bMenu';
+@import './gameStyle/numpad';
+@import './gameStyle/product';
+@import './menuStyle/bMenu';
 @import './home';
-@import './seriesMenu';
+@import './menuStyle/seriesMenu';
+@import './authStyle/loginStyle';
+@import './variables';
+
 *{
     font-family: $font;
 }

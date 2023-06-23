@@ -8,6 +8,7 @@ import { Game } from './components/Game';
 import AppContext from './context/Context';
 import axios from 'axios'
 import { SeriesMenu } from './components/menu/seriesMenu';
+import { Login } from './components/auth/Login';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/series/:serie' element={<Game />}/>
           <Route path='/series' element={<SeriesMenu />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </AppContext.Provider>
     </div>

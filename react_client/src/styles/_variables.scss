@@ -37,7 +37,7 @@ $orangeColor : #faf3e1;
     height: 32px;
     width: 300px;
     background-color: $bgC;
-    margin-top: 15%;
+    margin-top: 10%;
     font-size: 25px;
     text-align: center;
     color: #0050aa;
@@ -52,4 +52,33 @@ $orangeColor : #faf3e1;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+@mixin formStyle{
+    @include centered;
+    img{
+        width: 50%;
+    }
+    h1{
+        margin-top: 15%
+    }
+    form{
+        input{
+            @include menu($divBackgroundColor);
+            border: none;
+            position: relative;
+            &:focus{
+                outline: none;
+            }
+        }
+        button{
+            background-color: $secondColor;
+            color: $textColor;
+            margin-top: 10%;
+            font-size: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+        }
+    }
 }

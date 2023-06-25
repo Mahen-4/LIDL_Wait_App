@@ -23,6 +23,8 @@ export const Numpad =  () => {
     
     // HANDLING DISABLED BUTTON AND DECIMAL
     React.useEffect(()=>{
+        
+        console.log("DISABLED AND DECIMAL HANDLER---- TRIGGER")
         precNum.length < 1 ? setSuppDisable(true)   : setSuppDisable(false)
         precNum.length < 1 && setIsDecimal(false)
         decimalCount >= 1 && setIsDecimal(false)
@@ -33,12 +35,15 @@ export const Numpad =  () => {
     },[precNum.length])
 
     React.useEffect(()=>{
+        console.log("SET MONITOR---- TRIGGER")
         setMonitor(inputNum); 
     },[inputNum])
     
 
     // HANDLING NUM INPUT
     const takeInputNum = (num: number) =>{
+        
+        console.log("takeInputNum---- TRIGGER")
         setPrecNum(previous => [...previous, num]);
         if(isDecimal){
             num = num/Math.pow(10,decimalCount)
@@ -53,7 +58,10 @@ export const Numpad =  () => {
     
     // HANDLE  SUPP
     const deleteNum = () => {
-        
+
+        console.log("DELETE NUM---- TRIGGER")
+        inputNum < 0 && setInputNum(0)
+
         let lastNumber:number = precNum[precNum.length -1 ]
         console.log(precNum.length)
         // No decimal number

@@ -24,6 +24,9 @@ export const timer = (
             }
             if(timerDown === 0 ){
                 setTimerDown(30)
+                document.getElementsByClassName("plus_moins")[0].classList.remove("moins")
+                document.getElementsByClassName("plus_moins")[0].classList.remove("plus")
+
                 generateProduct()
                 
             }

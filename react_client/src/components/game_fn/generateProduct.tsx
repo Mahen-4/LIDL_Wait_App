@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 
  // generate random product -> verif if already guessed -> if not display  product
 interface Product {
@@ -18,7 +19,7 @@ export const generateProduct = (
     let generate = Math.floor(Math.random() * 6);
     if(doneProducts.includes(generate)){
         if(doneProducts.length === allProduct.length){
-            console.log("FINISH")
+            console.log("FINISH")            
             setFinish(true)
         }
         else{

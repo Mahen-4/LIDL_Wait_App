@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
-import { useState, useContext, useCallback} from 'react'
+import { useState, useContext, useCallback, useEffect} from 'react'
 import { Numpad } from './Numpad';
 import { Products } from './Products';
 import { Bmenu } from './menu/Bmenu';
@@ -12,7 +12,7 @@ export const Game =  () => {
     const {setAllProducts, allProduct}:any = useContext(AppContext)
     let {serie} = useParams()
 
-    const getData = useCallback(async()=>{
+    const getData = async()=>{
         try{
             const response = await axios.get(`http://127.0.0.1:5000/${serie}`)
             const data = await response.data.product
@@ -22,11 +22,11 @@ export const Game =  () => {
             console.log(err)
         }
         
-    },[])
+    }
 
-    React.useEffect(()=>{
+    useEffect(()=>{
         getData() 
-      },[getData])
+      },[])
 
    
 

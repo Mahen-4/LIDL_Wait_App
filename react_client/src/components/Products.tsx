@@ -22,13 +22,13 @@ export const Products =  () => {
     // START
     useEffect(()=>{
         setPoints(0)
-        console.log(allProduct)
         generatingProduct()
         // generateProduct(doneProducts,allProduct,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
     },[])
 
     // when user click validate 
-    useEffect(()=>{
+    useEffect(()=>{ 
+        console.log(guessNum)
         if(guessNum !== 0){
             handleGuessNum(guessNum,currentProduct_price,points,setTimerDown,setPoints,setGuessNum, generatingProduct)
         } 
@@ -38,13 +38,13 @@ export const Products =  () => {
         timer(timerDown,finish,setTimerDown,generatingProduct)
     }
 
-    // useEffect(()=>{  
-    //     const interval = setInterval(() => {
-    //         time()
-    //     }, 1000);
-    //     //Clearing the interval
-    //     return () => clearInterval(interval);
-    // },[timerDown])
+    useEffect(()=>{  
+        const interval = setInterval(() => {
+            time()
+        }, 1000);
+        //Clearing the interval
+        return () => clearInterval(interval);
+    },[timerDown])
     
     return(
         <div className='product'>

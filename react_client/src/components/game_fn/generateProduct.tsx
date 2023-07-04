@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
  // generate random product -> verif if already guessed -> if not display  product
 interface Product {
@@ -9,7 +9,7 @@ interface Product {
 export const generateProduct = (
     doneProducts: number[],
     allProduct: Product[],
-    setFinish: React.Dispatch<React.SetStateAction<boolean>>,
+    setGameFinish: React.Dispatch<React.SetStateAction<boolean>>,
     setDoneProducts: React.Dispatch<React.SetStateAction<number[]>>,
     setCurrentProduct_price: React.Dispatch<React.SetStateAction<number>>,
     setCurrentProduct_name: React.Dispatch<React.SetStateAction<string>>,
@@ -20,10 +20,10 @@ export const generateProduct = (
     if(doneProducts.includes(generate)){
         if(doneProducts.length === allProduct.length){
             console.log("FINISH")            
-            setFinish(true)
+            setGameFinish(true)
         }
         else{
-            generateProduct(doneProducts,allProduct,setFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
+            generateProduct(doneProducts,allProduct,setGameFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
         }
     }
     else{
@@ -33,5 +33,4 @@ export const generateProduct = (
         setCurrentProduct_image(allProduct[generate].img)
     }
 }
-
 

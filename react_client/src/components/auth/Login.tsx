@@ -3,6 +3,7 @@ import {useRef, useState} from 'react';
 import logo from '../../images/logo.png'
 import { Bmenu } from '../menu/Bmenu';
 import { Link } from 'react-router-dom';
+import { NavBar } from '../NavBar';
 
 export const Login = ()=> {
 
@@ -11,8 +12,7 @@ export const Login = ()=> {
 
     return (
       <div className='loginPage'>
-        <Bmenu />
-        <img src={logo} alt=''/>
+        <NavBar />
         <h1>Connexion</h1>
         <form> 
             <input type='email' placeholder='Email'/>    

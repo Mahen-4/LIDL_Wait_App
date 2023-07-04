@@ -6,10 +6,15 @@
 @import './authStyle/loginStyle';
 @import './authStyle/createAccountStyle';
 @import './variables';
+@import './gameStyle/result';
 
 *{
     font-family: $font;
+    margin: 3px 0 0 0;
 }
 a{
     text-decoration: none;
+}
+.navbar{
+    @include centered;
 }

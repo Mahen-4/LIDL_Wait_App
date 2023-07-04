@@ -7,20 +7,20 @@ import { timer } from './game_fn/Timer';
 
 export const Products =  () => {
 
-    const {guessNum, setGuessNum, allProduct, setPoints, points}:any = useContext(AppContext)
+    const {guessNum, setGuessNum, allProduct, setPoints, points,gameFinish, setGameFinish}:any = useContext(AppContext)
     const [timerDown, setTimerDown] = useState<number>(30)
     const [doneProducts, setDoneProducts] = useState<number[]>([])
-    const [finish, setFinish] = useState<boolean>(false)
 
     const [currentProduct_name, setCurrentProduct_name] = useState<string>("")
     const [currentProduct_price, setCurrentProduct_price] = useState<number>(0)
     const [currentProduct_image, setCurrentProduct_image] = useState<string>("")
 
 
-    const generatingProduct = () => {generateProduct(doneProducts,allProduct,setFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)}
+    const generatingProduct = () => {generateProduct(doneProducts,allProduct,setGameFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)}
 
     // START
     useEffect(()=>{
+        setGameFinish(false)
         setPoints(0)
         generatingProduct()
         // generateProduct(doneProducts,allProduct,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)
@@ -35,7 +35,7 @@ export const Products =  () => {
     },[guessNum])
 
     const time = () => {
-        timer(timerDown,finish,setTimerDown,generatingProduct)
+        timer(timerDown,gameFinish,setTimerDown,generatingProduct)
     }
 
     useEffect(()=>{  

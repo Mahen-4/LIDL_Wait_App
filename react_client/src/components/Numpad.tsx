@@ -4,7 +4,6 @@ import { useState, useContext} from 'react'
 import clear from '../images/clear.png'
 import validate from '../images/validate.png'
 import AppContext from '../context/Context';
-import { Link } from 'react-router-dom';
 
 
 export const Numpad =  () => {
@@ -35,7 +34,6 @@ export const Numpad =  () => {
     },[precNum.length])
 
     React.useEffect(()=>{
-        console.log("SET MONITOR---- TRIGGER")
         setMonitor(inputNum); 
     },[inputNum])
     
@@ -43,7 +41,6 @@ export const Numpad =  () => {
     // HANDLING NUM INPUT
     const takeInputNum = (num: number) =>{
         
-        console.log("takeInputNum---- TRIGGER")
         setPrecNum(previous => [...previous, num]);
         if(isDecimal){
             num = num/Math.pow(10,decimalCount)
@@ -59,7 +56,6 @@ export const Numpad =  () => {
     // HANDLE  SUPP
     const deleteNum = () => {
 
-        console.log("DELETE NUM---- TRIGGER")
         inputNum < 0 && setInputNum(0)
 
         let lastNumber:number = precNum[precNum.length -1 ]

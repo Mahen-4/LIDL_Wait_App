@@ -1,0 +1,20 @@
+@import '../variables';
+
+.result{
+    width: 100%;
+    height: 100vh;
+    background-color: $divBackgroundColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    h1{
+        font-size: 30px;
+    }
+    button{
+        @include button($secondColor,$textColor);
+    }
+}

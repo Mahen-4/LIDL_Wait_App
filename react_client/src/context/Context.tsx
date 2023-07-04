@@ -8,6 +8,9 @@ interface ContextType  {
     setAllProducts: React.Dispatch<React.SetStateAction<object[]>>
     points: number | 0
     setPoints: React.Dispatch<React.SetStateAction<number>>
+    gameFinish: boolean
+    setGameFinish: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 const iContextState = {
@@ -16,7 +19,9 @@ const iContextState = {
    allProduct: [],
    setAllProducts: () => {},
    points: 0,
-   setPoints: () => {}
+   setPoints: () => {},
+   gameFinish: false,
+   setGameFinish: () => {}
 }
 
 const AppContext = createContext<ContextType | undefined>(iContextState)

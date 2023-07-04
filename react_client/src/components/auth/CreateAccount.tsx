@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {useRef, useState} from 'react';
-import logo from '../../images/logo.png'
-import { Bmenu } from '../menu/Bmenu';
 import { Link } from 'react-router-dom';
 import { passwordVerif } from './PasswordVerif';
+import { NavBar } from '../NavBar';
 
 export const CreateAccount = ()=> {
 
@@ -40,8 +39,7 @@ export const CreateAccount = ()=> {
 
     return (
       <div className='createAccountPage'>
-        <Bmenu />
-        <img src={logo} alt=''/>
+        <NavBar />
         <h1>Création du compte</h1>
         <form>
             <input type='text' placeholder='Pseudo'/>     

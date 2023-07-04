@@ -1,15 +1,15 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
-import { useState, useContext, useCallback, useEffect} from 'react'
+import { useState, useContext,useEffect} from 'react'
 import { Numpad } from './Numpad';
 import { Products } from './Products';
 import { Bmenu } from './menu/Bmenu';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const Game =  () => {
 
-    const {setAllProducts, allProduct}:any = useContext(AppContext)
+    const {setAllProducts, allProduct, points,gameFinish}:any = useContext(AppContext)
     let {serie} = useParams()
 
     const getData = async()=>{
@@ -36,6 +36,11 @@ export const Game =  () => {
             <Bmenu />
             {allProduct.length > 0 && <Products />}
             <Numpad />
+            <div className="result" style={{display: gameFinish ? "flex" : "none"}}>
+                <h1>Bravo vous venez de prendre {points} {points > 1 ? "points" :  "point"}</h1>
+                <Link to="/"><button>Accueil</button></Link>
+                <Link to="/login"><button>Mon compte</button></Link>
+            </div>
         </div>
     )
 }

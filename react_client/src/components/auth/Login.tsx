@@ -25,10 +25,13 @@ export const Login = ()=> {
         else{
           Axios.post("http://127.0.0.1:5000/logIn", {"mail": mailChange.current.value, "password": passwordChange.current.value})
           .then(response => {
+            
+            console.log("trgger")
             if(response.data.userData){
               const data = response.data.userData
+              console.log(data)
               setUserData({isConnecter: true, username: data.username, userMail: data.mail, userPoints: data.points});
-              setErrMSG(`Connexion reussi, Bienvenue ${userData.username}`)
+              setErrMSG(`Connexion reussi`)
             }
             else{
               setErrMSG(response.data.err)
@@ -52,7 +55,7 @@ export const Login = ()=> {
                 <Link to="/createAccount"><p>Crée ton compte</p></Link>
             </div>
         </form> 
-        <h3>{errMSG}</h3>
+        <h3>{errMSG} {userData.username ? `, Bienvenue ${userData.username}`: ""}</h3>
       </div>
     );
 }

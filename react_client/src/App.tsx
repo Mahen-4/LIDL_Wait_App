@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './components/Home';
 import {useState} from 'react'
@@ -11,6 +11,7 @@ import { Login } from './components/auth/Login';
 import { CreateAccount } from './components/auth/CreateAccount';
 import { RegleDuJeu } from './components/RegleDuJeu';
 import { Profil } from './components/Profil';
+import Axios from 'axios'
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
     userMail: string | null,
     userPoints: number
   } 
+
+  
+
   const [userData, setUserData] = useState<iUserData>(
     {
       isConnected: false,

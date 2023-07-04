@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
+import UserContext from '../context/UserContext';
 import { useState, useContext, useEffect} from 'react'
 import { handleGuessNum } from './game_fn/HandleGuessNum';
 import { generateProduct } from './game_fn/generateProduct';
@@ -8,6 +9,7 @@ import { timer } from './game_fn/Timer';
 export const Products =  () => {
 
     const {guessNum, setGuessNum, allProduct, setPoints, points,gameFinish, setGameFinish}:any = useContext(AppContext)
+    const {userData}:any = useContext(UserContext)
     const [timerDown, setTimerDown] = useState<number>(30)
     const [doneProducts, setDoneProducts] = useState<number[]>([])
 
@@ -16,7 +18,7 @@ export const Products =  () => {
     const [currentProduct_image, setCurrentProduct_image] = useState<string>("")
 
 
-    const generatingProduct = () => {generateProduct(doneProducts,allProduct,setGameFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)}
+    const generatingProduct = () => {generateProduct(doneProducts,allProduct,points,userData.userMail,setGameFinish,setDoneProducts,setCurrentProduct_price,setCurrentProduct_name,setCurrentProduct_image)}
 
     // START
     useEffect(()=>{

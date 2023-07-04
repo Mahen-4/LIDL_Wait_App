@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState,useContext} from "react"
 import home from '../../images/home.png'
 import profil from '../../images/profil.png'
 import { Link } from "react-router-dom"
+import UserContext from "../../context/UserContext"
 
 export const Bmenu =  () => {
+    const {userData, setUserData}:any = useContext(UserContext)
 
     const [menuClicked, setMenuClicked] = useState<boolean>(false)
 
@@ -20,7 +22,7 @@ export const Bmenu =  () => {
                 <div className="menu" style={{opacity: menuClicked ? "1" : "0" }}>
                     <ul>
                         <Link to="/"><li><img src={home} alt="" />Home</li></Link>
-                        <Link to="/"><li><img src={profil} alt="" />Profil</li></Link>
+                        <Link to={userData.isConnecter ? "/profil" : "/login"}><li><img src={profil} alt="" />Profil</li></Link>
                     </ul>  
                 </div>
             </div>

@@ -12,26 +12,14 @@ import { CreateAccount } from './components/auth/CreateAccount';
 import { RegleDuJeu } from './components/RegleDuJeu';
 import { Profil } from './components/Profil';
 import Axios from 'axios'
-
+import { iUserData } from './context/UserContext';
 
 function App() {
-
   // game data
   const [guessNum, setGuessNum] = useState<number>(0)
   const [points, setPoints] = useState<number>(0)
   const [allProduct, setAllProducts] = useState<object[]>([])
   const [gameFinish, setGameFinish] = useState<boolean>(false)
-
-  // user data
-
-  interface iUserData{
-    isConnected: boolean,
-    username: string | null,
-    userMail: string | null,
-    userPoints: number
-  } 
-
-  
 
   const [userData, setUserData] = useState<iUserData>(
     {

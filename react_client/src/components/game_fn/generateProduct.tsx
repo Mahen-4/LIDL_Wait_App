@@ -18,14 +18,12 @@ export const generateProduct = (
     setCurrentProduct_image: React.Dispatch<React.SetStateAction<string>>,
 
 ) => {
-    console.log(userMail)
     let generate = Math.floor(Math.random() * 6);
     if(doneProducts.includes(generate)){
         if(doneProducts.length === allProduct.length){
             if(userMail){
                 Axios.post("http://127.0.0.1:5000/updatePoints", {"points": points, "mail": userMail })
                 .then(response => {
-                    console.log(response)
                     setGameFinish(true)
                 })
             }

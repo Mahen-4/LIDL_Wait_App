@@ -1,7 +1,7 @@
 
 import {createContext} from 'react'
 
-interface iUserData{
+export interface iUserData{
     isConnected: boolean,
     username: string | null,
     userMail: string | null,

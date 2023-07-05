@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {useRef, useState} from 'react';
-import logo from '../../images/logo.png'
-import { Bmenu } from '../menu/Bmenu';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../NavBar';
 import Axios from 'axios'
@@ -19,17 +17,14 @@ export const Login = ()=> {
       event.preventDefault()
       setErrMSG("")
       if(passwordChange.current && mailChange.current){
-        if(passwordChange.current.value == "" && mailChange.current.value == ""){
+        if(passwordChange.current.value === "" && mailChange.current.value === ""){
           setErrMSG("Tous les champs doivent être remplis")
         }
         else{
           Axios.post("http://127.0.0.1:5000/logIn", {"mail": mailChange.current.value, "password": passwordChange.current.value})
           .then(response => {
-            
-            console.log("trgger")
             if(response.data.userData){
               const data = response.data.userData
-              console.log(data)
               setUserData({isConnecter: true, username: data.username, userMail: data.mail, userPoints: data.points});
               setErrMSG(`Connexion reussi`)
             }
@@ -42,7 +37,6 @@ export const Login = ()=> {
         
       }
     }
-    console.log(userData)
     return (
       <div className='loginPage'>
         <NavBar />

@@ -29,7 +29,7 @@ export const handleGuessNum = (
             document.getElementsByClassName("plus_moins")[0].classList.add("plus")
             break;
 
-        default:
+        default:       
             break;
     }
 }

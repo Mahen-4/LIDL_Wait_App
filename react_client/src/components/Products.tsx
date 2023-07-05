@@ -22,6 +22,7 @@ export const Products =  () => {
 
     // START
     useEffect(()=>{
+        setGuessNum(0)
         setGameFinish(false)
         setPoints(0)
         generatingProduct()
@@ -30,7 +31,9 @@ export const Products =  () => {
 
     // when user click validate 
     useEffect(()=>{ 
-        console.log(guessNum)
+        
+        document.getElementsByClassName("plus_moins")[0].classList.remove("plus")
+        document.getElementsByClassName("plus_moins")[0].classList.remove("moins")
         if(guessNum !== 0){
             handleGuessNum(guessNum,currentProduct_price,points,setTimerDown,setPoints,setGuessNum, generatingProduct)
         } 

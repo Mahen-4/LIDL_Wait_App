@@ -1,22 +1,26 @@
-from flask import Flask, request, session;
+from flask import Flask, request, session
 from flask_pymongo import pymongo
 from pymongo import MongoClient
 from bson.json_util import dumps
 from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 import os
 from flask_bcrypt import Bcrypt
 
 
 #mdp : Zz&1zzzzzz
 app = Flask(__name__)
-app.secret_key = str(os.environ.get("APP_SECRET_KEY"))
+app.secret_key = os.getenv("SECRET_KEY")
 CORS(app)
 
 #MONGO DB CONNECTION
-uri = os.environ.get("MONGODB_URI")
+uri = os.getenv("MONGODB_URI")
 client = MongoClient(uri)
 dbProduct = client['product']
 dbUser = client['users']
+
+
 
 #bcrypt
 bcrypt = Bcrypt(app)
@@ -31,16 +35,19 @@ def productGame_Fruit_Legume():
     except Exception:
         return {"error": str(Exception) }
 
-@app.route("/createAcc")
+@app.route("/createAcc", methods = ['POST'] )
 def createAcc():
+    username = request.json['username']
+    mail = request.json['mail']
+    password = request.json['mdp']
     try:
-        result = dbUser.user_detail.find_one({'email':'dsada'})
+        result = dbUser.user_detail.find_one({'mail':mail})
         if result:
             return {"message" : "Email déjà utilisé"}
         else:
             #insert an user
-            #pw_hash = bcrypt.generate_password_hash('Zz&1zzzzzz')
-            #userExist = dbUser.user_detail.insert_one({"username": "original","mail": "original@gmail.com", "mdp": pw_hash, "points": 0})
+            pw_hash = bcrypt.generate_password_hash(password)
+            userExist = dbUser.user_detail.insert_one({"username": username,"mail": mail, "mdp": pw_hash, "points": 0})
             return {"message": "Creation de compte reussi !"}
     except Exception:
         print(Exception)
@@ -56,11 +63,6 @@ def logIn():
             if userExist:
                 checkPassword = bcrypt.check_password_hash(userExist['mdp'], password)
                 if checkPassword:
-                    
-                    session['sessionUP'] = True
-                    session['username'] = str(userExist['username'])
-                    session['userMail'] = str(userExist['mail'])
-                    session['userPoints'] = str(userExist['points'])
                     return {"Connexion Status" : "Connected", "userData": {"username": userExist['username'],"mail": userExist['mail'], "points": userExist['points']} }
                 else:
                     return {"err": "Mauvais mot de passe"}
@@ -74,25 +76,23 @@ def logIn():
     
 @app.route("/updatePoints", methods = ['POST'])
 def updatePoints():
-    points = request.json['points'] + session['userPoints']
+    points = request.json['points']
     mail = request.json['mail']
+    user  = dbUser.user_detail.find_one({"mail": mail},{"_id": 0})
     try:
-        dbUser.user_detail.update_one({"mail": mail}, {"$set": {"points": points}})
+        dbUser.user_detail.update_one({"mail": mail}, {"$set": {"points": points + user['points'] +1}})
         return {"update": "done"}
     except Exception:
         return {"err": str(Exception)}
 
-@app.route("/sessionUP", methods = ['GET'])
-def sessionUP():
-    if "sessionUP" in session:
-        return{
-            "username":  session['username'],
-            "userMail":  session['userMail'],
-            "userPoints":  session['userPoints']
-        }
-    else :
-         return{"session":"off"}
-
+@app.route("/getInfo", methods = ['GET', 'POST'])
+def getInfo():
+    mail = request.json['mail']
+    if(mail):
+        user  = dbUser.user_detail.find_one({"mail": mail},{"_id": 0})
+        return {"userData": {"username": user['username'],"mail": user['mail'], "points": user['points']} }
+    else:
+        return {"profil": "no Profil"}
 
 if __name__ == "__main__":
     app.run(debug=True)

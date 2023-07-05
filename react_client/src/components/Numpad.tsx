@@ -23,7 +23,6 @@ export const Numpad =  () => {
     // HANDLING DISABLED BUTTON AND DECIMAL
     React.useEffect(()=>{
         
-        console.log("DISABLED AND DECIMAL HANDLER---- TRIGGER")
         precNum.length < 1 ? setSuppDisable(true)   : setSuppDisable(false)
         precNum.length < 1 && setIsDecimal(false)
         decimalCount >= 1 && setIsDecimal(false)
@@ -59,7 +58,6 @@ export const Numpad =  () => {
         inputNum < 0 && setInputNum(0)
 
         let lastNumber:number = precNum[precNum.length -1 ]
-        console.log(precNum.length)
         // No decimal number
         if(decimalCount < 2)
         {
@@ -69,9 +67,11 @@ export const Numpad =  () => {
         }
         // decimal number
         else{
-            if(lastNumber < 1){
-                lastNumber = lastNumber*10
-            }
+            if (lastNumber < 1) {
+                lastNumber = lastNumber * 10;
+              } else if (lastNumber === -1) {
+                lastNumber = -0.1;
+              }
             setDecimalCount(decimalCount - 1)
             setInputNum(parseFloat((inputNum - (lastNumber/10)).toFixed(decimalCount)))
             setPrecNum(previousN => previousN.slice(0.-1))

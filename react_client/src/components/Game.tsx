@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AppContext from '../context/Context';
+import UserContext from '../context/UserContext';
 import { useState, useContext,useEffect} from 'react'
 import { Numpad } from './Numpad';
 import { Products } from './Products';
@@ -10,6 +11,7 @@ import { Link, useParams } from 'react-router-dom';
 export const Game =  () => {
 
     const {setAllProducts, allProduct, points,gameFinish}:any = useContext(AppContext)
+    const {userData}:any = useContext(UserContext)
     let {serie} = useParams()
 
     const getData = async()=>{
@@ -39,7 +41,7 @@ export const Game =  () => {
             <div className="result" style={{display: gameFinish ? "flex" : "none"}}>
                 <h1>Bravo vous venez de prendre {points} {points > 1 ? "points" :  "point"}</h1>
                 <Link to="/"><button>Accueil</button></Link>
-                <Link to="/login"><button>Mon compte</button></Link>
+                <Link to={userData.isConnecter ? "/profil" : "/login"}><button>Mon compte</button></Link>
             </div>
         </div>
     )
